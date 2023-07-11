@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.RemoteException;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -72,11 +73,14 @@ public class SunmiPrintHelper {
         try {
             boolean ret =  InnerPrinterManager.getInstance().bindService(context,
                     innerPrinterCallback);
+            Log.d("SunmiPrinter: ", "Init Done");
             if(!ret){
                 sunmiPrinter = NoSunmiPrinter;
+                Log.d("SunmiPrinter: ", "No Printer");
             }
         } catch (InnerPrinterException e) {
             e.printStackTrace();
+            Log.d("SunmiPrinter: ", "Init Failed");
         }
     }
 
